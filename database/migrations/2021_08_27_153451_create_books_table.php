@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('cover');
+            $table->string('qty');
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('authors')
