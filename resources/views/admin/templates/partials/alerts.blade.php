@@ -2,13 +2,17 @@
 @if (session('success'))
     $.notify({
         // options
-        message: '{{ session('success') }}' 
+        icon: "{{ asset('assets/dist/img/success-book.png') }}",
+        message: '{{ session('success') }}',
+ 
     },{
         // settings
+        icon_type: 'image',
         type: 'success',
         placement: {
-		from: "bottom",
+		from: "top",
 		align: "right"},
+        z_index: 9999,
     });
 @endif
 
@@ -20,8 +24,9 @@
             // settings
             type: 'info',
             placement: {
-            from: "bottom",
+            from: "top",
             align: "right"},
+            z_index: 9998,
         });
 @endif
 
@@ -33,8 +38,9 @@
             // settings
             type: 'danger',
             placement: {
-            from: "bottom",
+            from: "top",
             align: "right"},
+            z_index: 9997,
         });
 @endif
 </script>

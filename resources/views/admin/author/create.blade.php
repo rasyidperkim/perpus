@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Penulis">
+                    <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Penulis" required>
                 </div>
 
                 <div class="form-group">
