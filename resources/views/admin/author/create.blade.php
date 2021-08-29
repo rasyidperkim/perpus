@@ -12,7 +12,10 @@
 
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Penulis" required>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Penulis" value="{{ old('name') }}">
+                    @error('name')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
