@@ -25,3 +25,7 @@ Route::get('/author/data', [DataController::class, 'authors'])->name('author.dat
 
 Route::resource('author', '\App\Http\Controllers\Admin\AuthorController');
 
+Route::get('/book/data', [DataController::class, 'books'])->name('book.data');
+
+Route::resource('book', '\App\Http\Controllers\Admin\BookController');
+
