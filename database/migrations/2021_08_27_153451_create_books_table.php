@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->string('title');
             $table->text('description');
-            $table->string('cover');
+            $table->string('cover')->nullable()->default(null);
             $table->string('qty');
             $table->timestamps();
 
