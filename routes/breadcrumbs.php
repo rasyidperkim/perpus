@@ -33,6 +33,26 @@ Breadcrumbs::for('admin.author.edit', function (BreadcrumbTrail $trail, $author)
     $trail->push('Edit Penulis', route('admin.author.edit', $author));
 });
 
+// Beranda > Book index
+Breadcrumbs::for('admin.book.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Daftar Buku', route('admin.book.index'));
+});
+
+// Beranda > Book create
+Breadcrumbs::for('admin.book.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Daftar Buku', route('admin.book.index'));
+    $trail->push('Tambah Buku', route('admin.book.create'));
+});
+
+// Beranda > Book edit
+Breadcrumbs::for('admin.book.edit', function (BreadcrumbTrail $trail, $book) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Daftar Buku', route('admin.book.index'));
+    $trail->push('Edit Data Buku', route('admin.book.edit', $book));
+});
+
 
 // // Home > Blog > [Category]
 // Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
