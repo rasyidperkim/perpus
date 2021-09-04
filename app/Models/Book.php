@@ -18,7 +18,7 @@ class Book extends Model
 
     public function getCover()
     {
-        if (substr($this->cover,0,5) == "https"){
+        if (substr($this->cover, 0, 5) == "https") {
             return $this->cover;
         }
 
@@ -26,8 +26,6 @@ class Book extends Model
             return asset($this->cover);
         }
 
-        return 'https://via.placeholder.com/150x150.png?text=No+Cover';
-
+        return 'https://via.placeholder.com/100x150.png?text=No+Cover';
     }
-    
 }
