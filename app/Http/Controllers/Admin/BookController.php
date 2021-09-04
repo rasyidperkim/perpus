@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -91,6 +92,7 @@ class BookController extends Controller
     {
         return view('admin.book.edit', [
             'title' => 'Ubah Data Buku',
+            'authors' => Author::orderBy('name', 'ASC')->get(),
             'book' => $book,
         ]);
     }
@@ -105,10 +107,29 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->validate($request, [
-            'title' => 'required'
+            'title' => 'required',
+            'description' => 'required|min:20',
+            'author_id' => 'required',
+            'cover' => 'file|image|mimes:jpg,png,jpeg,gif,svg,webp',
+            'qty' => 'required|numeric',
         ]);
         
-        $book->update($request->only('title'));
+        $cover = $book->cover;
+
+        if ($request->hasFile('cover')){
+            Storage::delete($book->cover);
+            $imgName = time() . '-' . $request->file('cover')->getClientOriginalName();
+            $cover = $request->file('cover')->storeAs('assets/covers', $imgName);
+                        
+        }
+
+        $book->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'author_id' => $request->author_id,
+            'cover' => $cover,
+            'qty' => $request->qty,
+        ]);
 
         return redirect()->route('admin.book.index')
                             ->with('info', 'Data Buku Berhasil Diupdate');
