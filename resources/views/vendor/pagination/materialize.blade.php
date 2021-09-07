@@ -26,7 +26,7 @@
                         <li class="active" aria-current="page"><a href="#">{{ $page }}</a></li>
                     @else
                         <li>
-                        <li class="waves-effect hoverable">
+                        <li class="waves-effect waves-teal hoverable">
                             <a href="{{ $url }}">{{ $page }}</a>
                         </li>
                         </li>

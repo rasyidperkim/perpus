@@ -14,11 +14,13 @@
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
-                            <h5>{{ $book->title }}</h5>
+                            <h5>
+                                <a href="{{ route('book.show', $book->id) }}">{{ $book->title }}</a>
+                            </h5>
                             <p>{{ Str::limit($book->description, 50, '...') }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="#">Pinjam Buku</a>
+                            <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
                         </div>
                     </div>
                 </div>

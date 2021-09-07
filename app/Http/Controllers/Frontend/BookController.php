@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::paginate(2);
+        $books = Book::paginate(4);
 
         return view(
             'frontend.book.index',
@@ -18,5 +18,14 @@ class BookController extends Controller
                 'books' => $books,
             ]
         );
+    }
+
+    public function show(Book $book)
+    {
+
+        // dd($book);
+        return view('frontend.book.show', [
+            'book' => $book,
+        ]);
     }
 }
