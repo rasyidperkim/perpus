@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BorrowController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 // use App\Http\Controllers\Admin\AuthorController;
@@ -29,3 +30,8 @@ Route::get('/book/data', [DataController::class, 'books'])->name('book.data');
 
 Route::resource('book', '\App\Http\Controllers\Admin\BookController');
 
+Route::get('/borrow/data', [DataController::class, 'borrows'])->name('borrow.data');
+
+Route::get('borrow', [BorrowController::class, 'index'])->name('borrow.index');
+
+Route::put('borrow/{borrowHistory}/return', [BorrowController::class, 'returnBook'])->name('borrow.return');

@@ -59,3 +59,9 @@ Breadcrumbs::for('admin.book.edit', function (BreadcrumbTrail $trail, $book) {
 //     $trail->parent('blog');
 //     $trail->push($category->title, route('category', $category));
 // });
+
+// Beranda > Borrow index
+Breadcrumbs::for('admin.borrow.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Peminjaman', route('admin.borrow.index'));
+});

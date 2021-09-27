@@ -17,8 +17,13 @@
                     <p><i class="material-icons">book</i> <b> Stock : </b> {{ $book->qty }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="#" onclick="goBack()" class="btn blue accent-1 left waves-effect waves-light">Back</a>
-                    <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
+                    <a href="{{ url()->previous() }}" class="btn blue accent-1 left waves-effect waves-light">Back</a>
+                    <form action="{{ route('book.borrow', $book) }}" method="post">
+                        @csrf
+
+                        <input type="submit" value="Pinjam Buku"
+                            class="btn red accent-1 right waves-effect waves-light">
+                    </form>
                 </div>
             </div>
         </div>
@@ -27,25 +32,10 @@
     <h6>Buku Lainnya dari Penulis {{ $book->author->name }}</h6>
     <div class="row">
         {{-- {{ dd($book->author->books) }} --}}
-        @foreach ($book->author->books as $book)
-            <div class="col s12 m6">
-                <div class="card horizontal hoverable">
-                    <div class=" card-image">
-                        <img src="{{ $book->getCover() }}" height="200px" width="150px">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <h5>
-                                <a href="{{ route('book.show', $book->id) }}">{{ $book->title }}</a>
-                            </h5>
-                            <p>{{ Str::limit($book->description, 50, '...') }}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#" class="btn red accent-1 right waves-effect waves-light">Pinjam Buku</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @foreach ($book->author->books->shuffle()->take(4) as $book)
+           @component('frontend.templates.components.card-book', ['book'=>$book])
+               
+           @endcomponent
         @endforeach
     </div>
 @endsection

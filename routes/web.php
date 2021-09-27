@@ -18,6 +18,8 @@ Route::get('/', [App\Http\Controllers\Frontend\BookController::class, 'index'])-
 
 Route::get('/book/{book}', [App\Http\Controllers\Frontend\BookController::class, 'show'])->name('book.show');
 
+Route::post('/book/{book}/borrow', [App\Http\Controllers\Frontend\BookController::class, 'borrow'])->name('book.borrow')->middleware('auth');
+
 Route::get('/user', function () {
     return view('admin.user.index');
 });

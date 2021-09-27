@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\BorrowHistory;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -38,6 +39,24 @@ class DataController extends Controller
             ->addColumn('action', 'admin.book.action')
             ->addIndexColumn()
             ->rawColumns(['cover', 'action'])
+            ->toJson();
+    }
+
+    public function borrows()
+    {
+
+        $borrows = BorrowHistory::whereNull('returned_at')->latest();
+
+        return DataTables::eloquent($borrows)
+            ->addColumn('user', function (BorrowHistory $model) {
+                return $model->user->name;
+            })
+            ->addColumn('book_title', function (BorrowHistory $model) {
+                return $model->book->title;
+            })
+            ->addColumn('action', 'admin.borrow.action')
+            ->addIndexColumn()
+            ->rawColumns(['action'])
             ->toJson();
     }
 }
